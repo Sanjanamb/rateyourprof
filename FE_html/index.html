@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>PHD - Professors' Huge Database</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../FE_css/w3.css">
+<link rel="stylesheet" type="text/css" href="../FE_css/w3-theme-black.css">
+<link rel="stylesheet" type="text/css" href="../FE_css/css.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../FE_css/autocomplete.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+
+
+
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-medium">
+    <a class="w3-bar-item w3-button w3-left w3-hide-large w3-hover-white w3-medium w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-theme-l1">PHD</a>
+    <a href="ranking.html" class="w3-bar-item w3-button w3-hover-white">Professor Ranking</a>
+    <a href="contact.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+    <a href="sponsors.html" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Sponsors</a>
+    
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-medium w3-theme-l5 w3-animate-left" id="mySidebar">
+  <a class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" href="javascript:void(0)" onclick="w3_close()"  title="Close Menu"><i class="fa fa-remove"></i></a>
+  <h4 class="w3-bar-item"><b>Login</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="document.getElementById('slogin').style.display='block'">Student Login</a>
+  <a class="w3-bar-item w3-button w3-hover-black" onclick="document.getElementById('alogin').style.display='block'">Admin Login</a>
+</nav>
+
+<!-- Student Login -->
+<div id="slogin" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+    <div class="w3-center"><br>
+      <span onclick="w3_close_slogin()" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">×</span>
+      <img src="../Images/piclogin.JPG" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+    </div>
+
+    <form class="w3-container" id = "loginForm">
+      <div class="w3-section">
+        <label><b>Email Id</b></label>     
+        <input class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter College Email Id" name="sEmail" id ="sEmailidl" required>
+        <label><b>Password</b></label>
+        <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="psw" id ="pswidl" required>
+        <button class="w3-button w3-block w3-green w3-section w3-padding" id="btnlogin" type="submit" >Login</button>
+        <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+      </div>
+    </form>
+
+    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+      <button onclick="w3_close_slogin()" type="button" class="w3-button w3-red w3-left">Cancel</button>
+      <span class="w3-right">New User ? &nbsp;<button onclick="w3_open_signUp()" type="button" class="w3-button w3-green w3-right">Sign Up</button></span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Student SignUp -->
+<div id="ssignUp" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+    <div class="w3-center"><br>
+      <span onclick="w3_close_signUp()" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">×</span>
+      <img src="../Images/piclogin.JPG" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+    </div>
+
+    <form class="w3-container" id = "signupForm">
+      <div class="w3-section">
+        <label><b>Name</b></label>
+        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter your name" name="sName" id = "sNameid" required>
+        <div autocomplete="off">
+          <div class="autocomplete">
+            <label><b>College Name</b></label>
+            <input id="myInput" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Select your college" name="sCollege" required>
+          </div>
+        </div>
+        <label><b>Degree</b></label>
+        <div>
+          <p>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="PHD">
+          <label>PHD student &nbsp;</label>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="BTech">
+          <label>BTech &nbsp;</label>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="BCA">
+          <label>BCA &nbsp;</label>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="Diploma">
+          <label>Diploma &nbsp;</label>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="BSc">
+          <label>BSc &nbsp;</label>
+          </p>
+          <p>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="Mtech">
+          <label>M.Tech &nbsp;</label> 
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="MSc">
+          <label>M.Sc &nbsp;</label> 
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="MCA">
+          <label>MCA &nbsp;</label>
+          <input class="w3-radio" type="radio" id ="sDegreeid" name="sDegree" value="Other">
+          <label>Other &nbsp;</label>
+          </p>
+        </div>
+        <label><b>Email Id</b></label>
+        <input class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter College Email Id" name="sEmail" id ="sEmailid" required>
+        <label><b>Password</b></label>
+        <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="psw" id ="pswid" required>
+        <button class="w3-button w3-block w3-green w3-section w3-padding" id="btnsignup" type="submit" >Submit</button>
+        <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+      </div>
+    </form>
+
+    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+      <button onclick="w3_close_signUp()" type="button" class="w3-button w3-red w3-left">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Admin Login -->
+<div id="alogin" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+      <div class="w3-center"><br>
+        <span onclick="w3_close_alogin()" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">×</span>
+        <img src="../Images/piclogin.JPG" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+  
+      <form class="w3-container" >
+        <div class="w3-section">
+          <label><b>Email Id</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Enter Admin Email Id" name="aEmail" required>
+          <label><b>Password</b></label>
+          <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="apsw" required>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
+          <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+        </div>
+      </form>
+  
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="w3_close_alogin()" type="button" class="w3-button w3-red w3-left">Cancel</button>
+      </div>
+  
+    </div>
+  </div>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Space for Search Button</h1>
+      <form autocomplete="off">
+        <div class="autocomplete">
+          <input id="myInputProfessorNames" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Search Name of Professor" name="sProfessor" required>
+        </div>
+      </form>
+    </div>  
+  </div>
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">PHD - Professors' Huge Database</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+        
+    <div class="w3-third w3-container">
+      <img src="../Images/ad1.jpg" class="w3-border w3-padding-small w3-center" seamless>
+    </div>
+  </div>
+
+  <div class="w3-row w3-padding-64">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">How to give Rating to Professors ?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div class="w3-third w3-container">
+        <img src="../Images/ad1.jpg" class="w3-border w3-padding-small w3-center" seamless>
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>Footer</h4>
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>Powered by <a href="https://www.vjti.ac.in/index.php/academics/electrical" target="_blank">VJTI Electrical Department</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Get the Student Login Box
+var loginBox = document.getElementById("slogin");
+
+// Get the Sign Up Box
+var signUpBox = document.getElementById("ssignUp");
+
+// Get the Admin Login Box
+var aloginBox = document.getElementById("alogin");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+
+// Close the student login with the close button & cross
+function w3_close_slogin() {
+  loginBox.style.display = "none";
+}
+// Open the student login with the close button & cross
+function w3_open_slogin() {
+  loginBox.style.display = "block";
+  signUpBox.style.display = "none";
+}
+
+// Open the student sign up with the Sign Up button
+function w3_open_signUp() {
+  loginBox.style.display = "none";
+  signUpBox.style.display = "block";
+}
+
+// Close the student login with the close button & cross
+function w3_close_signUp() {
+  loginBox.style.display = "none";
+  signUpBox.style.display = "none";
+}
+
+// Close the admin login with the close button & cross
+function w3_close_alogin() {
+  aloginBox.style.display = "none";
+}
+// Open the admin login with the close button & cross
+function w3_open_alogin() {
+  aloginBox.style.display = "block";
+  signUpBox.style.display = "none";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the college names in the database:*/
+var collegeList = ["IIT Bombay","IIT Delhi","IIT Kanpur","VJTI Mumbai","COE Pune","VNIT Nagpur"];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the collegeList array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), collegeList);
+
+
+
+/*An array containing all the professor names in the database:*/
+var professorList = ["R.D.Daruwala","N.M.Singh","M.S.Paanse","Dr.Faruk Kazi"];
+
+/*initiate the autocomplete function on the "myInputProfessorNames" element, and pass along the professorList array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInputProfessorNames"), professorList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    
+     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+     <script>
+     var firebaseConfig = {
+    apiKey: "AIzaSyCB6IUDE4WZlBHGnU4RlXh4kD51g2nd13k",
+    authDomain: "rate-your-professor-returns.firebaseapp.com",
+    databaseURL: "https://rate-your-professor-returns.firebaseio.com",
+    projectId: "rate-your-professor-returns",
+    storageBucket: "rate-your-professor-returns.appspot.com",
+    messagingSenderId: "1008810118636",
+    appId: "1:1008810118636:web:487477f36bcd24c4"
+  };
+
+  // Initialize Firebase
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const auth = firebase.auth();
+  //const dbs = firebase.firestore();
+
+  //UPDATE FIRESTORE
+  //dbs.setings({timestampsInSnapshots: true});
+  
+     
+     </script>
+     
+        
+     <script src = "signup.js"></script>
+     <script src = "Getjson.js"></script>
+    
+     </body>
+     </html>
+
+</body>
+</html>
